@@ -1,7 +1,7 @@
-// ===== CONFIG =====
+
 const API_BASE = 'http://localhost:8080/api';
 
-// ===== STATE =====
+
 const state = {
   user: null,
   username: null,
@@ -10,7 +10,7 @@ const state = {
   isAnonymous: true
 };
 
-// ===== UTILITY FUNCTIONS =====
+
 function $(selector) {
   return document.querySelector(selector);
 }
@@ -35,7 +35,7 @@ function removeFromStorage(key) {
   localStorage.removeItem(key);
 }
 
-// ===== TOAST NOTIFICATIONS =====
+
 function showToast(message, type = 'info') {
   let container = $('.toast-container');
   if (!container) {
@@ -57,7 +57,7 @@ function showToast(message, type = 'info') {
   }, 3000);
 }
 
-// ===== RANDOM ANONYMOUS NAMES =====
+
 const adjectives = ['Silent', 'Hidden', 'Mystic', 'Shadow', 'Cosmic', 'Neon', 'Phantom', 'Velvet', 'Crystal', 'Brave', 'Gentle', 'Wild', 'Calm', 'Bright', 'Dark'];
 const nouns = ['Phoenix', 'Wolf', 'Eagle', 'Tiger', 'Panda', 'Fox', 'Owl', 'Lion', 'Bear', 'Hawk', 'Dragon', 'Raven', 'Falcon', 'Lynx', 'Cobra'];
 
@@ -68,7 +68,7 @@ function generateAnonymousName() {
   return `${adj}${noun}${num}`;
 }
 
-// ===== TIME AGO =====
+
 function timeAgo(dateString) {
   const now = new Date();
   const date = new Date(dateString);
@@ -81,9 +81,7 @@ function timeAgo(dateString) {
   return date.toLocaleDateString();
 }
 
-// ========================================
-// PAGE 1: LOGIN / SIGNUP (index.html)
-// ========================================
+
 function initAuthPage() {
   const loginTab = $('#loginTab');
   const signupTab = $('#signupTab');
@@ -92,7 +90,7 @@ function initAuthPage() {
 
   if (!loginTab) return;
 
-  // Check if already logged in
+  
   const existingUser = getFromStorage('anonymous_user');
   if (existingUser) {
     const hasUsername = getFromStorage('anonymous_username');
@@ -104,7 +102,7 @@ function initAuthPage() {
     return;
   }
 
-  // Tab switching
+  
   loginTab.addEventListener('click', () => {
     loginTab.classList.add('active');
     signupTab.classList.remove('active');
@@ -119,7 +117,7 @@ function initAuthPage() {
     loginForm.classList.add('hidden');
   });
 
-  // Login Form
+  
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = $('#loginEmail').value.trim();
@@ -130,7 +128,7 @@ function initAuthPage() {
       return;
     }
 
-    // Simulate login
+    
     const users = getFromStorage('anonymous_users') || [];
     const user = users.find(u => u.email === email && u.password === password);
 
@@ -150,7 +148,7 @@ function initAuthPage() {
     }
   });
 
-  // Signup Form
+  
   signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = $('#signupEmail').value.trim();
@@ -196,16 +194,14 @@ function initAuthPage() {
   });
 }
 
-// ========================================
-// PAGE 2: DASHBOARD (dashboard.html)
-// ========================================
+
 function initDashboardPage() {
   const usernameSection = $('#usernameSection');
   const dashboardSection = $('#dashboardSection');
 
   if (!usernameSection) return;
 
-  // Check auth
+  
   const user = getFromStorage('anonymous_user');
   if (!user) {
     window.location.href = 'index.html';
@@ -215,12 +211,12 @@ function initDashboardPage() {
   const savedUsername = getFromStorage('anonymous_username');
 
   if (savedUsername) {
-    // Show dashboard
+   
     usernameSection.classList.add('hidden');
     dashboardSection.classList.remove('hidden');
     loadDashboard(savedUsername);
   } else {
-    // Show username creation
+    
     usernameSection.classList.remove('hidden');
     dashboardSection.classList.add('hidden');
     initUsernameCreation();
@@ -233,7 +229,7 @@ function initUsernameCreation() {
   const customInput = $('#customUsername');
   const saveBtn = $('#saveUsername');
 
-  // Generate initial name
+ 
   let currentName = generateAnonymousName();
   generatedDisplay.textContent = currentName;
 
@@ -272,7 +268,7 @@ function loadDashboard(username) {
   if (displayName) displayName.textContent = username;
   if (navUser) navUser.textContent = username;
 
-  // Load stats
+  
   const problems = getFromStorage('anonymous_problems') || [];
   const userProblems = problems.filter(p => p.authorId === getFromStorage('anonymous_user')?.id);
 
@@ -287,7 +283,7 @@ function loadDashboard(username) {
   }
   if (totalHelped) totalHelped.textContent = Math.floor(Math.random() * 50);
 
-  // Go to main button
+  
   const goMainBtn = $('#goToMain');
   if (goMainBtn) {
     goMainBtn.addEventListener('click', () => {
@@ -296,15 +292,13 @@ function loadDashboard(username) {
   }
 }
 
-// ========================================
-// PAGE 3: MAIN (main.html)
-// ========================================
+
 function initMainPage() {
   const problemsList = $('#problemsList');
 
   if (!problemsList) return;
 
-  // Check auth
+  
   const user = getFromStorage('anonymous_user');
   const username = getFromStorage('anonymous_username');
 
@@ -313,20 +307,20 @@ function initMainPage() {
     return;
   }
 
-  // Set nav username
+  
   const navUser = $('#navUsername');
   if (navUser) navUser.textContent = username;
 
-  // Load problems
+  
   loadProblems();
 
-  // Post form
+ 
   initPostForm(user, username);
 
-  // Filter buttons
+  
   initFilters();
 
-  // Anonymous toggle
+  
   const anonToggle = $('#anonToggle');
   if (anonToggle) {
     anonToggle.checked = true;
@@ -335,7 +329,7 @@ function initMainPage() {
     });
   }
 
-  // Logout
+  
   const logoutBtn = $('#logoutBtn');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
@@ -421,13 +415,13 @@ function loadProblems() {
 
   let problems = getFromStorage('anonymous_problems') || [];
 
-  // If no problems, add sample data
+  
   if (problems.length === 0) {
     problems = getSampleProblems();
     saveToStorage('anonymous_problems', problems);
   }
 
-  // Apply filter
+  
   if (state.currentFilter !== 'all') {
     problems = problems.filter(p => p.tag === state.currentFilter);
   }
@@ -445,7 +439,7 @@ function loadProblems() {
 
   problemsList.innerHTML = problems.map(problem => createProblemCard(problem)).join('');
 
-  // Attach event listeners
+  
   attachProblemEvents();
 }
 
@@ -510,7 +504,7 @@ function createProblemCard(problem) {
 }
 
 function attachProblemEvents() {
-  // Like buttons
+  
   $$('.like-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = parseInt(btn.dataset.id);
@@ -536,7 +530,7 @@ function attachProblemEvents() {
     });
   });
 
-  // Response toggle
+  
   $$('.response-toggle-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.dataset.id;
@@ -545,7 +539,7 @@ function attachProblemEvents() {
     });
   });
 
-  // Send response
+  
   $$('.send-resp-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = parseInt(btn.dataset.id);
@@ -578,7 +572,7 @@ function attachProblemEvents() {
     });
   });
 
-  // Share
+  
   $$('.share-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       showToast('Link copied to clipboard!', 'success');
@@ -650,7 +644,7 @@ function getSampleProblems() {
   ];
 }
 
-// ===== INIT ON DOM LOAD =====
+
 document.addEventListener('DOMContentLoaded', () => {
   const page = document.body.dataset.page;
 
