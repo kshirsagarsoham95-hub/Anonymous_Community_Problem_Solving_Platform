@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anonymous – Community Board</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="main">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="main.html" class="logo">
+        <div class="icon">🎭</div>
+        <span>Anonymous</span>
+      </a>
+      <div class="nav-links">
+        <a href="dashboard.html"><span>📊</span> Dashboard</a>
+        <a href="main.html" class="active"><span>🏠</span> Board</a>
+        <div class="user-badge">
+          <div class="avatar">👤</div>
+          <span id="navUsername">User</span>
+        </div>
+        <button class="btn btn-secondary btn-small" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="main-wrapper">
+      <div class="main-layout">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar">
+          <div class="sidebar-card">
+            <h3>Filter by Category</h3>
+            <button class="filter-btn active" data-filter="all">🌐 All Posts <span class="count">—</span></button>
+            <button class="filter-btn" data-filter="urgent">🔴 Urgent <span class="count"></span></button>
+            <button class="filter-btn" data-filter="help">🟡 Need Help <span class="count"></span></button>
+            <button class="filter-btn" data-filter="discussion">🟢 Discussion <span class="count"></span></button>
+            <button class="filter-btn" data-filter="advice">🟣 Advice <span class="count"></span></button>
+            <button class="filter-btn" data-filter="general">⚪ General <span class="count"></span></button>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Community Rules</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8;">
+              ✅ Be kind & supportive<br>
+              ✅ Respect anonymity<br>
+              ✅ No hate speech<br>
+              ✅ Offer helpful advice<br>
+              ❌ No personal attacks
+            </p>
+          </div>
+        </aside>
+
+        <!-- ===== CONTENT AREA ===== -->
+        <div class="content-area">
+
+          <!-- Post Form -->
+          <div class="post-form-card">
+            <div class="form-header">
+              <div class="user-avatar">🎭</div>
+              <h3>Share your problem anonymously...</h3>
+            </div>
+
+            <div class="form-group">
+              <input type="text" id="problemTitle" placeholder="Title - What's on your mind?" style="padding-left: 14px;" />
+            </div>
+
+            <div class="form-group">
+              <textarea id="problemBody" placeholder="Describe your problem in detail. The community is here to help..."></textarea>
+            </div>
+
+            <div class="tag-select">
+              <button class="tag tag-btn" data-tag="general">⚪ General</button>
+              <button class="tag tag-btn tag-urgent" data-tag="urgent">🔴 Urgent</button>
+              <button class="tag tag-btn tag-help" data-tag="help">🟡 Need Help</button>
+              <button class="tag tag-btn tag-discussion" data-tag="discussion">🟢 Discussion</button>
+              <button class="tag tag-btn tag-advice" data-tag="advice">🟣 Advice</button>
+            </div>
+
+            <div class="form-actions">
+              <div class="anonymous-toggle">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="anonToggle" checked />
+                  <span class="slider"></span>
+                </label>
+                <span>Post Anonymously</span>
+              </div>
+              <button class="btn btn-primary" id="submitProblem" style="width: auto;">🚀 Post</button>
+            </div>
+          </div>
+
+          <!-- Problems List -->
+          <div id="problemsList">
+            <div class="spinner"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anonymous – Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="dashboard">
+
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="icon">🎭</div>
+        <span>Anonymous</span>
+      </a>
+      <div class="nav-links">
+        <div class="user-badge">
+          <div class="avatar">👤</div>
+          <span id="navUsername">User</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- ===== USERNAME CREATION SECTION ===== -->
+    <div id="usernameSection" class="dashboard-wrapper">
+      <div class="username-section">
+        <div class="username-card">
+          <div class="emoji-big">🎭</div>
+          <h2>Choose Your Identity</h2>
+          <p>Pick an anonymous username. No one will know who you are.<br>You can use a generated name or create your own.</p>
+
+          <div class="generated-name" id="generatedName">SilentPhoenix42</div>
+          <br />
+          <button class="btn btn-secondary btn-small" id="generateBtn" style="margin-bottom: 20px;">🎲 Generate New</button>
+
+          <div class="form-group" style="text-align: left;">
+            <label>Or enter a custom username</label>
+            <div class="username-input-group">
+              <input type="text" id="customUsername" placeholder="e.g. MidnightCoder" style="padding-left: 14px;" />
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="saveUsername">Continue →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DASHBOARD SECTION ===== -->
+    <div id="dashboardSection" class="dashboard-wrapper hidden">
+      <div class="dashboard-header">
+        <h1>Welcome, <span id="displayUsername"></span> 🎉</h1>
+        <p>Your anonymous journey starts here</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📝</div>
+          <div class="stat-number" id="totalProblems">0</div>
+          <div class="stat-label">Problems Shared</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💬</div>
+          <div class="stat-number" id="totalResponses">0</div>
+          <div class="stat-label">Responses Given</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🤝</div>
+          <div class="stat-number" id="totalHelped">0</div>
+          <div class="stat-label">People Helped</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔒</div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Anonymous</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="btn btn-primary" id="goToMain" style="width: auto; padding: 16px 40px; font-size: 1.05rem;">
+          🚀 Go to Community Board
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
