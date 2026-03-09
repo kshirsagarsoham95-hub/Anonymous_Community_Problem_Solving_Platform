@@ -8,6 +8,12 @@
 </head>
 <body data-page="main">
 
+  <div class="bg-animation">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
   
   <nav class="navbar">
     <div class="container">
@@ -18,6 +24,7 @@
       <div class="nav-links">
         <a href="dashboard.html"><span>📊</span> Dashboard</a>
         <a href="main.html" class="active"><span>🏠</span> Board</a>
+        <span id="onlineUsers" style="font-size:0.8rem;color:var(--secondary);padding:6px 12px;background:var(--bg-input);border-radius:20px;border:1px solid var(--border);">🟢 0 online</span>
         <div class="user-badge">
           <div class="avatar">👤</div>
           <span id="navUsername">User</span>
@@ -33,18 +40,50 @@
 
         
         <aside class="sidebar">
+
+          
           <div class="sidebar-card">
-            <h3>Filter by Category</h3>
-            <button class="filter-btn active" data-filter="all">🌐 All Posts <span class="count">—</span></button>
-            <button class="filter-btn" data-filter="urgent">🔴 Urgent <span class="count"></span></button>
-            <button class="filter-btn" data-filter="help">🟡 Need Help <span class="count"></span></button>
-            <button class="filter-btn" data-filter="discussion">🟢 Discussion <span class="count"></span></button>
-            <button class="filter-btn" data-filter="advice">🟣 Advice <span class="count"></span></button>
-            <button class="filter-btn" data-filter="general">⚪ General <span class="count"></span></button>
+            <h3>🔍 Search</h3>
+            <input type="text" id="searchProblems" placeholder="Search problems..." style="width:100%;padding:10px 14px;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.88rem;outline:none;" />
           </div>
 
+          
           <div class="sidebar-card">
-            <h3>Community Rules</h3>
+            <h3>📂 Filter by Category</h3>
+            <button class="filter-btn active" data-filter="all">🌐 All Posts <span class="count">0</span></button>
+            <button class="filter-btn" data-filter="urgent">🔴 Urgent <span class="count">0</span></button>
+            <button class="filter-btn" data-filter="help">🟡 Need Help <span class="count">0</span></button>
+            <button class="filter-btn" data-filter="discussion">🟢 Discussion <span class="count">0</span></button>
+            <button class="filter-btn" data-filter="advice">🟣 Advice <span class="count">0</span></button>
+            <button class="filter-btn" data-filter="general">⚪ General <span class="count">0</span></button>
+          </div>
+
+          
+          <div class="sidebar-card">
+            <h3>🧠 Mentor Mode</h3>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <label class="toggle-switch">
+                <input type="checkbox" id="mentorToggle" />
+                <span class="slider"></span>
+              </label>
+              <span style="font-size:0.85rem;color:var(--text-secondary);">Help those in need first</span>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text-muted);margin-top:10px;">
+              Sorts problems by urgency so you can help where it matters most.
+            </p>
+          </div>
+
+          
+          <div class="sidebar-card">
+            <h3>🔥 Trending Topics</h3>
+            <div id="trendingWords" style="line-height:2;">
+              <p style="color:var(--text-muted);font-size:0.85rem;">Loading...</p>
+            </div>
+          </div>
+
+         
+          <div class="sidebar-card">
+            <h3>📜 Community Rules</h3>
             <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8;">
               ✅ Be kind & supportive<br>
               ✅ Respect anonymity<br>
@@ -65,12 +104,19 @@
               <h3>Share your problem anonymously...</h3>
             </div>
 
-            <div class="form-group">
-              <input type="text" id="problemTitle" placeholder="Title - What's on your mind?" style="padding-left: 14px;" />
+            
+            <div style="margin-bottom:15px;">
+              <label style="display:block;margin-bottom:8px;font-size:0.8rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;">How are you feeling?</label>
+              <div id="moodSelector" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
             </div>
 
             <div class="form-group">
-              <textarea id="problemBody" placeholder="Describe your problem in detail. The community is here to help..."></textarea>
+              <input type="text" id="problemTitle" placeholder="Title — What's on your mind?" style="padding-left: 14px;" />
+            </div>
+
+            <div class="form-group">
+              <textarea id="problemBody" placeholder="Describe your problem in detail. This is a safe space — the community is here to help..."></textarea>
+              <div id="sentimentHint" style="display:none;font-size:0.8rem;padding:8px 12px;margin-top:6px;border-radius:var(--radius-sm);background:var(--bg-input);"></div>
             </div>
 
             <div class="tag-select">
@@ -89,7 +135,7 @@
                 </label>
                 <span>Post Anonymously</span>
               </div>
-              <button class="btn btn-primary" id="submitProblem" style="width: auto;">🚀 Post</button>
+              <button class="btn btn-primary" id="submitProblem" style="width: auto; padding: 12px 30px;">🚀 Post Problem</button>
             </div>
           </div>
 
