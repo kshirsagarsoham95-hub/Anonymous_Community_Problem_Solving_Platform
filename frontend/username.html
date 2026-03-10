@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anonymous · Choose Identity</title>
+  <link rel="stylesheet" href="css/glass.css">
+</head>
+<body data-page="username">
+
+  <div class="mesh-bg"></div>
+  <div class="glow-orb"></div>
+  <div class="glow-orb"></div>
+  <div class="glow-orb"></div>
+  <div class="scan-line"></div>
+
+  <div class="username-page page-wrapper">
+    <div class="username-glass glass-static">
+      <div class="username-emoji">🎭</div>
+      <h2>Choose Your Identity</h2>
+      <p class="subtitle">No one will know who you are.<br>Use a generated alias or create your own.</p>
+
+      <div class="gen-badge" id="genBadge">SilentPhoenix42</div>
+      <br>
+      <button class="btn btn-ghost btn-sm btn-pill" id="genBtn" style="margin-bottom:8px">🎲 Generate New</button>
+
+      <div class="divider-or"><span>or type your own</span></div>
+
+      <div class="field" style="text-align:left">
+        <input class="field-input field-input--plain" type="text" id="customName" placeholder="e.g. MidnightCoder">
+      </div>
+
+      <button class="btn btn-glow" id="saveName" style="margin-top:10px">Continue →</button>
+    </div>
+  </div>
+
+  <script src="js/glass-app.js"></script>
+</body>
+</html>

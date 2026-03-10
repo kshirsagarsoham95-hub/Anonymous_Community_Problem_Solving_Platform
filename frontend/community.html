@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anonymous · Community</title>
+  <link rel="stylesheet" href="css/glass.css">
+</head>
+<body data-page="community">
+
+  <div class="mesh-bg"></div>
+  <div class="glow-orb"></div>
+  <div class="glow-orb"></div>
+  <div class="glow-orb"></div>
+  <div class="scan-line"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="community.html" class="nav-brand">
+        <div class="nav-brand-icon">🎭</div>
+        <span>Anonymous</span>
+      </a>
+      <div class="nav-links">
+        <a href="dashboard.html" class="nav-link">📊 <span>Dashboard</span></a>
+        <a href="community.html" class="nav-link active">🏠 <span>Board</span></a>
+
+        <!-- Categories Dropdown -->
+        <div class="dropdown">
+          <button class="dropdown-trigger">
+            <div class="trigger-icon">📂</div>
+            <span class="cat-label">🌐 All</span>
+            <span class="trigger-arrow">▼</span>
+          </button>
+          <div class="dropdown-menu left-align">
+            <div class="dropdown-header">
+              <div class="dh-name">Filter by Category</div>
+            </div>
+            <button class="dropdown-item cat-dropdown-item active" data-filter="all">
+              <div class="di-icon">🌐</div> All Posts <span class="f-count" style="margin-left:auto;font-size:0.7rem;opacity:0.5"></span>
+            </button>
+            <button class="dropdown-item cat-dropdown-item" data-filter="urgent">
+              <div class="di-icon">🔴</div> Urgent <span class="f-count" style="margin-left:auto;font-size:0.7rem;opacity:0.5"></span>
+            </button>
+            <button class="dropdown-item cat-dropdown-item" data-filter="help">
+              <div class="di-icon">🟡</div> Need Help <span class="f-count" style="margin-left:auto;font-size:0.7rem;opacity:0.5"></span>
+            </button>
+            <button class="dropdown-item cat-dropdown-item" data-filter="discussion">
+              <div class="di-icon">🔵</div> Discussion <span class="f-count" style="margin-left:auto;font-size:0.7rem;opacity:0.5"></span>
+            </button>
+            <button class="dropdown-item cat-dropdown-item" data-filter="advice">
+              <div class="di-icon">🟣</div> Advice <span class="f-count" style="margin-left:auto;font-size:0.7rem;opacity:0.5"></span>
+            </button>
+            <button class="dropdown-item cat-dropdown-item" data-filter="general">
+              <div class="di-icon">⚪</div> General <span class="f-count" style="margin-left:auto;font-size:0.7rem;opacity:0.5"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Profile Dropdown -->
+        <div class="dropdown">
+          <button class="dropdown-trigger">
+            <div class="trigger-avatar trigger-initial">U</div>
+            <span class="trigger-name">User</span>
+            <span class="trigger-arrow">▼</span>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropdown-header">
+              <div class="dh-name dd-username">User</div>
+              <div class="dh-email dd-email">user@email.com</div>
+              <div class="dh-badge">🔒 Anonymous Mode</div>
+            </div>
+            <button class="dropdown-item" data-action="dashboard"><div class="di-icon">📊</div> Dashboard</button>
+            <button class="dropdown-item" data-action="community"><div class="di-icon">🏠</div> Community Board</button>
+            <button class="dropdown-item" data-action="change-name"><div class="di-icon">🎭</div> Change Identity</button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" data-action="clear-posts"><div class="di-icon">🗑️</div> Clear My Posts</button>
+            <button class="dropdown-item danger" data-action="logout"><div class="di-icon">🚪</div> Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container page-wrapper">
+    <section class="community-section">
+      <div class="community-grid">
+
+        <!-- SIDEBAR -->
+        <aside>
+          <div class="sidebar-glass glass-static">
+            <div class="sidebar-title">Categories</div>
+            <div class="filter-list">
+              <button class="filter-item active" data-filter="all">🌐 All Posts <span class="f-count">—</span></button>
+              <button class="filter-item" data-filter="urgent">🔴 Urgent <span class="f-count"></span></button>
+              <button class="filter-item" data-filter="help">🟡 Need Help <span class="f-count"></span></button>
+              <button class="filter-item" data-filter="discussion">🔵 Discussion <span class="f-count"></span></button>
+              <button class="filter-item" data-filter="advice">🟣 Advice <span class="f-count"></span></button>
+              <button class="filter-item" data-filter="general">⚪ General <span class="f-count"></span></button>
+            </div>
+          </div>
+          <div class="rules-glass glass-static">
+            <div class="sidebar-title">Community Rules</div>
+            <p>
+              ✅ Be kind &amp; supportive<br>
+              ✅ Respect anonymity<br>
+              ✅ Offer genuine advice<br>
+              ❌ No hate speech<br>
+              ❌ No personal attacks
+            </p>
+          </div>
+        </aside>
+
+        <!-- FEED -->
+        <div class="feed">
+          <div id="feed">
+            <div class="spinner"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER TASKBAR -->
+  <footer class="taskbar">
+    <div class="taskbar-inner">
+      <button class="tb-item" data-page="dashboard.html">
+        <span class="tb-icon">📊</span>
+        <span>Dashboard</span>
+      </button>
+      <button class="tb-item active" data-page="community.html">
+        <span class="tb-icon">🏠</span>
+        <span>Board</span>
+      </button>
+      <button class="tb-compose" id="tbCompose">✏️</button>
+      <button class="tb-item" data-page="community.html">
+        <span class="tb-icon">🔍</span>
+        <span>Explore</span>
+      </button>
+      <button class="tb-item" data-page="dashboard.html">
+        <span class="tb-icon">👤</span>
+        <span>Profile</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- COMPOSER MODAL -->
+  <div class="modal-overlay" id="composerModal">
+    <div class="modal-glass">
+      <div class="modal-top">
+        <h3>🎭 Share Anonymously</h3>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Title</label>
+        <input class="field-input field-input--plain" type="text" id="mTitle" placeholder="What's on your mind?">
+      </div>
+      <div class="field">
+        <label class="field-label">Description</label>
+        <textarea class="field-textarea" id="mBody" placeholder="Describe your problem in detail. The community is here to help…"></textarea>
+      </div>
+
+      <div class="tag-row">
+        <button class="tag-chip" data-tag="general">⚪ General</button>
+        <button class="tag-chip" data-tag="urgent">🔴 Urgent</button>
+        <button class="tag-chip" data-tag="help">🟡 Need Help</button>
+        <button class="tag-chip" data-tag="discussion">🔵 Discussion</button>
+        <button class="tag-chip" data-tag="advice">🟣 Advice</button>
+      </div>
+
+      <div class="composer-footer">
+        <div class="toggle-wrap">
+          <label class="toggle">
+            <input type="checkbox" id="anonToggle" checked>
+            <span class="toggle-track"></span>
+          </label>
+          <span>Post Anonymously</span>
+        </div>
+        <button class="btn btn-glow btn-sm" id="modalPostBtn" style="width:auto">🚀 Post</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/glass-app.js"></script>
+</body>
+</html>

@@ -3,100 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anonymous Community — Dashboard</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Anonymous · Dashboard</title>
+  <link rel="stylesheet" href="css/glass.css">
 </head>
 <body data-page="dashboard">
-  <div class="bg-animation">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
 
-  
-  <nav class="navbar">
-    <div class="container">
-      <div class="logo">
-        <div class="icon">🎭</div>
+  <div class="mesh-bg"></div>
+  <div class="glow-orb"></div>
+  <div class="glow-orb"></div>
+  <div class="glow-orb"></div>
+  <div class="scan-line"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="dashboard.html" class="nav-brand">
+        <div class="nav-brand-icon">🎭</div>
         <span>Anonymous</span>
-      </div>
+      </a>
       <div class="nav-links">
-        <span id="onlineUsers" style="font-size:0.8rem;color:var(--secondary);padding:6px 12px;background:var(--bg-input);border-radius:20px;border:1px solid var(--border);">🟢 0 online</span>
-        <div class="user-badge">
-          <div class="avatar">👤</div>
-          <span id="navUsername">User</span>
+        <a href="dashboard.html" class="nav-link active">📊 <span>Dashboard</span></a>
+        <a href="community.html" class="nav-link">🏠 <span>Board</span></a>
+
+        <!-- Profile Dropdown -->
+        <div class="dropdown">
+          <button class="dropdown-trigger">
+            <div class="trigger-avatar trigger-initial">U</div>
+            <span class="trigger-name">User</span>
+            <span class="trigger-arrow">▼</span>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropdown-header">
+              <div class="dh-name dd-username">User</div>
+              <div class="dh-email dd-email">user@email.com</div>
+              <div class="dh-badge">🔒 Anonymous Mode</div>
+            </div>
+            <button class="dropdown-item" data-action="dashboard"><div class="di-icon">📊</div> Dashboard</button>
+            <button class="dropdown-item" data-action="community"><div class="di-icon">🏠</div> Community Board</button>
+            <button class="dropdown-item" data-action="change-name"><div class="di-icon">🎭</div> Change Identity</button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" data-action="clear-posts"><div class="di-icon">🗑️</div> Clear My Posts</button>
+            <button class="dropdown-item danger" data-action="logout"><div class="di-icon">🚪</div> Logout</button>
+          </div>
         </div>
       </div>
     </div>
   </nav>
 
-  
-  <section id="usernameSection" class="dashboard-wrapper">
-    <div class="container">
-      <div class="username-section">
-        <div class="username-card">
-          <div class="emoji-big">🎭</div>
-          <h2>Choose Your Anonymous Identity</h2>
-          <p>This name will be shown when you choose not to stay fully anonymous. Your real identity stays hidden.</p>
-          <div class="generated-name" id="generatedName">Loading...</div>
-          <br>
-          <button class="btn btn-secondary btn-small" id="generateBtn" style="margin-bottom:20px;">🎲 Generate New Name</button>
-          <div class="username-input-group">
-            <input type="text" id="customUsername" placeholder="Or type your own name..." style="padding-left:14px;">
-            <button class="btn btn-primary" id="saveUsername" style="width:auto;">Save ✓</button>
-          </div>
-        </div>
+  <div class="container page-wrapper">
+    <section class="dash-section">
+      <div class="dash-hero">
+        <h1>Welcome, <span id="heroName">User</span> 🎉</h1>
+        <p>Your anonymous journey starts here</p>
       </div>
-    </div>
-  </section>
 
-  
-  <section id="dashboardSection" class="dashboard-wrapper hidden">
-    <div class="container">
-      <div class="dashboard-header">
-        <h1>Welcome back, <span id="displayUsername" style="color:var(--primary);">User</span>!</h1>
-        <p>Your anonymous community dashboard</p>
-        <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
-          <span id="streakCount" style="font-size:0.9rem;padding:6px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;">🔥 0 day streak</span>
-          <span id="repBadge" style="font-size:0.9rem;padding:6px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;">🌱 Newcomer</span>
-          <span id="onlineUsers" style="font-size:0.9rem;padding:6px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;">🟢 0 online</span>
+      <div class="stats-row">
+        <div class="stat-glass glass">
+          <span class="stat-emoji">📝</span>
+          <div class="stat-val" id="statProblems">0</div>
+          <div class="stat-lbl">Problems Shared</div>
+        </div>
+        <div class="stat-glass glass">
+          <span class="stat-emoji">💬</span>
+          <div class="stat-val" id="statResponses">0</div>
+          <div class="stat-lbl">Responses Given</div>
+        </div>
+        <div class="stat-glass glass">
+          <span class="stat-emoji">🤝</span>
+          <div class="stat-val" id="statHelped">0</div>
+          <div class="stat-lbl">People Helped</div>
+        </div>
+        <div class="stat-glass glass">
+          <span class="stat-emoji">🔒</span>
+          <div class="stat-val">100%</div>
+          <div class="stat-lbl">Anonymous</div>
         </div>
       </div>
 
-      
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon">📝</div>
-          <div class="stat-number" id="totalProblems">0</div>
-          <div class="stat-label">Problems Shared</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">💬</div>
-          <div class="stat-number" id="totalResponses">0</div>
-          <div class="stat-label">Responses Given</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">⭐</div>
-          <div class="stat-number" id="totalHelped">0</div>
-          <div class="stat-label">Reputation Points</div>
-        </div>
-      </div>
-
-      
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:25px;margin-bottom:30px;">
-        <h3 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:15px;">🔥 Trending Topics in Community</h3>
-        <div id="trendingWords" style="line-height:2.2;text-align:center;"></div>
-      </div>
-
-     
-      <div style="text-align:center;">
-        <button class="btn btn-primary" id="goToMain" style="width:auto;padding:16px 50px;font-size:1.05rem;">
-          🚀 Enter Community
+      <div class="dash-cta">
+        <button class="btn btn-glow btn-pill" id="goBoard" style="width:auto;padding:18px 48px;font-size:1.02rem">
+          🚀 Go to Community Board
         </button>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <script src="js/app.js"></script>
+  <!-- FOOTER TASKBAR -->
+  <footer class="taskbar">
+    <div class="taskbar-inner">
+      <button class="tb-item active" data-page="dashboard.html">
+        <span class="tb-icon">📊</span>
+        <span>Dashboard</span>
+      </button>
+      <button class="tb-item" data-page="community.html">
+        <span class="tb-icon">🏠</span>
+        <span>Board</span>
+      </button>
+      <button class="tb-compose" id="tbCompose">✏️</button>
+      <button class="tb-item" data-page="community.html">
+        <span class="tb-icon">🔍</span>
+        <span>Explore</span>
+      </button>
+      <button class="tb-item" data-page="dashboard.html">
+        <span class="tb-icon">👤</span>
+        <span>Profile</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- COMPOSER MODAL -->
+  <div class="modal-overlay" id="composerModal">
+    <div class="modal-glass">
+      <div class="modal-top">
+        <h3>🎭 Share Anonymously</h3>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Title</label>
+        <input class="field-input field-input--plain" type="text" id="mTitle" placeholder="What's on your mind?">
+      </div>
+      <div class="field">
+        <label class="field-label">Description</label>
+        <textarea class="field-textarea" id="mBody" placeholder="Describe your problem in detail…"></textarea>
+      </div>
+
+      <div class="tag-row">
+        <button class="tag-chip" data-tag="general">⚪ General</button>
+        <button class="tag-chip" data-tag="urgent">🔴 Urgent</button>
+        <button class="tag-chip" data-tag="help">🟡 Need Help</button>
+        <button class="tag-chip" data-tag="discussion">🔵 Discussion</button>
+        <button class="tag-chip" data-tag="advice">🟣 Advice</button>
+      </div>
+
+      <div class="composer-footer">
+        <div class="toggle-wrap">
+          <label class="toggle">
+            <input type="checkbox" id="mAnonToggle" checked>
+            <span class="toggle-track"></span>
+          </label>
+          <span>Post Anonymously</span>
+        </div>
+        <button class="btn btn-glow btn-sm" id="modalPostBtn" style="width:auto">🚀 Post</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/glass-app.js"></script>
 </body>
 </html>
